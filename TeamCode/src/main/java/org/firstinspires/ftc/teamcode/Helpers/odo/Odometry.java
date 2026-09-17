@@ -42,7 +42,7 @@ public class Odometry {
                 Math.toDegrees(pinpoint.getHeading())
         };
     }
-
+//ignore this comment
     public void reset() {
         pinpoint.resetPosAndIMU();
         pinpoint.setPosition(new Pose2D(DistanceUnit.CM,0,0, AngleUnit.DEGREES,0));
