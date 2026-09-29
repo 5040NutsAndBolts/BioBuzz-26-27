@@ -80,6 +80,9 @@ public class Drivetrain {
             rotation /= scale;
             sideways /= scale;
         }
+
+
+
         frontLeft.setPower((forward  + sideways + rotation)/1.6);
         frontRight.setPower((forward - sideways - rotation)/1.6);
         backLeft.setPower((forward   - sideways + rotation)/1.6);
@@ -135,6 +138,8 @@ public class Drivetrain {
     }
 
     boolean lastButton = false;
+
+
 
     public void toggleSlowMode(boolean input) {
         if (lastButton != input && input)
