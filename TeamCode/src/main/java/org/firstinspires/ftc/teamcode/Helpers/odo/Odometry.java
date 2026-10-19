@@ -39,13 +39,13 @@ public class Odometry {
         return new double[] {
                 (pinpoint.getPosition().getX(DistanceUnit.CM)),
                 (pinpoint.getPosition().getY(DistanceUnit.CM)),
-                Math.toDegrees(pinpoint.getHeading())
+                 pinpoint.getHeading()
         };
     }
 
     public void reset() {
         pinpoint.resetPosAndIMU();
-        pinpoint.setPosition(new Pose2D(DistanceUnit.CM,0,0, AngleUnit.DEGREES,0));
+        pinpoint.setPosition(new Pose2D(DistanceUnit.CM,0,0, AngleUnit.RADIANS,0));
     }
 
     public void set(Pose2D pose) {
@@ -53,7 +53,7 @@ public class Odometry {
         pinpoint.setPosition(pose);
     }
     public void reset(int x, int y, int heading) {
-        pinpoint.setPosition(new Pose2D(DistanceUnit.CM,x,y, AngleUnit.DEGREES,heading));
+        pinpoint.setPosition(new Pose2D(DistanceUnit.CM,x,y, AngleUnit.RADIANS,heading));
     }
     @NonNull
     @Override

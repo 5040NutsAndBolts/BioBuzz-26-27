@@ -27,7 +27,7 @@ public class mtpTest extends OpMode {
     public void loop() {
 
         double[] errThreshold = {
-                1.5, 1.5, 1.04 //cm,cm,degrees
+                1.5, 1.5, 0.0174 //cm,cm,radians
         };
         double[] maxVel = {
                 0.6,0.6,0.35

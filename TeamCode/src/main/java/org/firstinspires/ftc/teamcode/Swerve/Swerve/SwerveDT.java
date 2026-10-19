@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode.Swerve.Swerve;
+package org.firstinspires.ftc.teamcode.Swerve.Swerve;
 
 import static androidx.core.math.MathUtils.clamp;
 
@@ -14,8 +14,8 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 public class SwerveDT {
     private final double[] moduleX = {15,-15}; //assign the positions of the modules
     private final double[] moduleY = {20,-20}; //assign the positions of the modules
-    private final DcMotorEx[] motorA = new DcMotorEx[2];
-    private final DcMotorEx[] motorB = new DcMotorEx[2];
+    public final DcMotorEx[] motorA = new DcMotorEx[2];
+    public final DcMotorEx[] motorB = new DcMotorEx[2];
     public final VoltageSensor voltageSensor;
     public AnalogInput[] steerEncoder = new AnalogInput[2];
 
@@ -45,8 +45,8 @@ public class SwerveDT {
 
     public void sRobotOrientedDrive(double forward, double sideways, double rotation){
         for (int i = 0; i < 2; i++) {
-            double mvx = forward - rotation * moduleY[i];
-            double mvy = sideways + rotation * moduleX[i];
+            double mvx = forward + rotation * moduleY[i];
+            double mvy = sideways - rotation * moduleX[i];
             double targetAngle = Math.atan2(mvy,mvx);
             double targetSpeed = Math.hypot(mvx,mvy);
 
@@ -58,7 +58,7 @@ public class SwerveDT {
             double driveCmd = clamp(targetSpeed, -1, 1);
 
             double vA = -driveCmd - steerCmd;
-            double vB = driveCmd - steerCmd;
+            double vB = driveCmd + steerCmd;
 
             motorA[i].setPower(clamp(vA, -.25, .25));
             motorB[i].setPower(clamp(vB, -.25, .25));
@@ -83,4 +83,3 @@ public class SwerveDT {
 
 
 }
-*/

@@ -36,7 +36,7 @@ public class Drivetrain {
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        odo = new Odometry(hardwareMap, 133.35f, 152.4f);
+        odo = new Odometry(hardwareMap, 133.35f, 152.4f); // fix for new drivetrain
         this.resetOdo();
     }
 
@@ -51,8 +51,8 @@ public class Drivetrain {
      */
     public static double angleDifference(double target, double current) {
         double diff = (target - current) % 360.0;
-        if (diff > 180.0)  diff -= 360.0;
-        if (diff <= -180.0) diff += 360.0;
+        if (diff > Math.PI)  diff -= 2 * Math.PI;
+        if (diff <= -Math.PI) diff += 2 * Math.PI;
         return diff;
     }
 

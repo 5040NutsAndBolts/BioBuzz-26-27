@@ -11,7 +11,7 @@ public class PID {
     private double errorSum;
     private double lastError;
     private double lastOutput, currentOutput;
-    private double integralLimit;
+    private double integralLimit = 5.0;
     private int deltaTime;
     private long lastTime;
     private final Supplier<Double> processVariable;
