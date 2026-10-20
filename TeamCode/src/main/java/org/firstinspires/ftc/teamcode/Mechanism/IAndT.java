@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class Intake {
+public class IAndT {
     private final DcMotorEx intake;
     private final CRServo transfer;
 
@@ -21,12 +21,12 @@ public class Intake {
 
     //Constructors!!
 
-    public Intake(@NonNull HardwareMap hardwareMap) {
+    public IAndT(@NonNull HardwareMap hardwareMap) {
         intake = hardwareMap.get(DcMotorEx.class, "Intake");
         transfer = hardwareMap.get(CRServo.class, "Transfer");
         DEFAULT_SPEED = 0.5;
     }
-    public Intake(@NonNull HardwareMap hardwareMap, double defaultSpeed) {
+    public IAndT(@NonNull HardwareMap hardwareMap, double defaultSpeed) {
         intake = hardwareMap.get(DcMotorEx.class, "Intake");
         transfer = hardwareMap.get(CRServo.class, "Transfer");
         DEFAULT_SPEED = defaultSpeed;
