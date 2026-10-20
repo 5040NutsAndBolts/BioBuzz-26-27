@@ -39,6 +39,25 @@ public class Drivetrain {
         odo = new Odometry(hardwareMap, 133.35f, 152.4f);
         this.resetOdo();
     }
+    public Drivetrain(@NonNull HardwareMap hardwareMap, float xOffset, float yOffset) {
+        voltageSensor = hardwareMap.get(VoltageSensor.class, "Control Hub");
+
+        frontLeft  = hardwareMap.get(DcMotorEx.class, "FrontLeft");
+        frontRight = hardwareMap.get(DcMotorEx.class, "FrontRight");
+        backLeft   = hardwareMap.get(DcMotorEx.class, "BackLeft");
+        backRight  = hardwareMap.get(DcMotorEx.class, "BackRight");
+
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        odo = new Odometry(hardwareMap, xOffset, yOffset);
+        this.resetOdo();
+    }
 
     public void updateOdo() {
         odo.update();

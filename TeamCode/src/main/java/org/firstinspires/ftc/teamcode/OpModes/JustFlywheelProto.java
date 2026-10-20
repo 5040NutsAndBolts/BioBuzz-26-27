@@ -1,17 +1,20 @@
-package org.firstinspires.ftc.teamcode.Ben;
+package org.firstinspires.ftc.teamcode.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="BenTest1", group="Teleop")
-public class BenTest1 extends OpMode {
+import org.firstinspires.ftc.teamcode.Mechanism.FlywheelProto;
+// Ben
 
-    private BenTester bt;
+@TeleOp(name="BenTest1", group="Teleop")
+public class JustFlywheelProto extends OpMode {
+
+    private FlywheelProto bt;
     private double p0, p1, inc;
     private boolean running;
     @Override
     public void init(){
-        bt = new BenTester(hardwareMap);
+        bt = new FlywheelProto(hardwareMap);
         p0 = 0.15; //0.19
         p1 = 0.55; //0.48
         inc = 0.01;
