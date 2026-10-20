@@ -1,4 +1,4 @@
-/*package org.firstinspires.ftc.teamcode.Swerve.Swerve;
+package org.firstinspires.ftc.teamcode.Swerve.Swerve;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -20,9 +20,11 @@ public class JustSwerve extends OpMode {
         telemetry.addData("Angle", "%.4f rad", dt.readAbsoluteAngle(dt.steerEncoder[0]));
         telemetry.addData("enc1 V / max", "%.3f / %.3f", dt.steerEncoder[0].getVoltage(), dt.steerEncoder[0].getMaxVoltage());
         telemetry.addData("enc2 V / max", "%.3f / %.3f", dt.steerEncoder[1].getVoltage(), dt.steerEncoder[1].getMaxVoltage());
-        telemetry.update();
+        telemetry.addData("Mod1A:",dt.motorA[0].getVelocity());
+        telemetry.addData("Mod1B:",dt.motorB[0].getVelocity());
+        telemetry.addData("Mod2A:",dt.motorA[1].getVelocity());
+        telemetry.addData("Mod2B:",dt.motorB[1].getVelocity());
         telemetry.update();
     }
 }
 
- */

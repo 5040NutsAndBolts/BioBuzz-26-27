@@ -6,13 +6,17 @@ import org.firstinspires.ftc.teamcode.Mechanism.Drivetrain;
 
 import java.util.function.Supplier;
 
+    /**
+     * cm,cm,degrees is what all of this is measured in
+     * to check, go to the Odometry.java file.
+     */
 
 public class MoveToPosition {
     public Drivetrain dt;
     Pose target;
     Supplier<Double> xSupplier = () -> dt.getPosition()[0];
     Supplier<Double> ySupplier = () -> dt.getPosition()[1];
-    Supplier<Double> headingSupplier = () -> Math.toRadians(dt.getPosition()[2]);
+    Supplier<Double> headingSupplier = () -> dt.getPosition()[2];
 
     /**
      PIDs, not worried about a wrap around bug since
@@ -20,13 +24,11 @@ public class MoveToPosition {
      */
     PID xController = new PID(0.02,1e-4,0, xSupplier);
     PID yController = new PID(0.02,1e-4,0, ySupplier);
-    PID headingController = new PID(0.03,3e-5,0, () -> {
-        return Math.toDegrees(dt.getPosition()[2]);
-    });
+    PID headingController = new PID(0.03,3e-5,0, headingSupplier);
 
     //just a way to organize position and angle in a simple way
     public static class Pose {
-        public double x, y, heading;
+        public double x, y, heading; // cm, cm, radians
         public Pose(double x, double y, double heading) {
             this.x = x;
             this.y = y;
@@ -51,6 +53,9 @@ public class MoveToPosition {
     }
 
     public void moveToPosition(Pose target, double[] errThreshold, double[] maxVel){
+
+        dt.updateOdo();
+
         // Reset the PID timers and errors before starting the movement profile
         xController.reset();
         yController.reset();
@@ -63,14 +68,14 @@ public class MoveToPosition {
         // Read from suppliers automatically inside the autoControl loop
             double currentX = xSupplier.get();
             double currentY = ySupplier.get();
-            double currentHeading = headingSupplier.get();
+            double currentHeading = headingSupplier.get(); // radians
 
             double deltaX = target.x - currentX;
             double deltaY = target.y - currentY;
-            double deltaTheta = normalizeAngle(target.heading - currentHeading);
+            double deltaTheta = normalizeAngle(target.heading - currentHeading); // radians
 
             // Since heading requires custom error wrapping, update its target relative to current error
-            headingController.setTarget(currentHeading + deltaTheta);
+            headingController.setTarget(currentHeading + deltaTheta); // radians
 
             // Let the suppliers inside PID handle capturing positions automatically!
             double xOut = xController.autoControl();
