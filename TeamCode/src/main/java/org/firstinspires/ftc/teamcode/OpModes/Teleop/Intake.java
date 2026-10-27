@@ -16,9 +16,6 @@ public class Intake extends OpMode {
 
     @Override
     public void loop() {
-        if(gamepad1.crossWasPressed())
-            b.runIntakeIn();
-        else if(gamepad1.triangleWasPressed())
-            b.runIntakeOut();
+        b.runIntake(gamepad1.triangle, gamepad1.cross, 0.75);
     }
 }
