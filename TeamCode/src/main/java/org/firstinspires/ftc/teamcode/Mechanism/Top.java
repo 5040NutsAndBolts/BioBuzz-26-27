@@ -26,8 +26,6 @@ public class Top {
         else
             return -1;
     }
-    //we probably need to do a PID here and the RPMS method is like 100% wrong but
-    //is it a crime for a boy to try his best and fail?
     // checkmate, arthritis.
     public void spinFlywheel(double pow)
     {

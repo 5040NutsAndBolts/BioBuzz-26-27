@@ -2,15 +2,17 @@ package org.firstinspires.ftc.teamcode.OpModes.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Mechanism.Bottom;
+import org.firstinspires.ftc.teamcode.Mechanism.Intake;
 import org.firstinspires.ftc.teamcode.Mechanism.Drivetrain;
 import org.firstinspires.ftc.teamcode.Mechanism.Top;
-
+//CHRIIIIIIIISTIAN
+// read my code :D
 @TeleOp(name="FullRobot", group="Teleop")
 public class FullRobot extends OpMode  {
     private Drivetrain dt;
-    private Bottom b;
+    private Intake i;
     private Top t;
     private boolean runWheel;
     private double power;
@@ -19,8 +21,9 @@ public class FullRobot extends OpMode  {
     public void init()
     {
         dt = new Drivetrain(hardwareMap);
-        b = new Bottom(hardwareMap);
+        i = new Intake(hardwareMap);
         t = new Top(hardwareMap);
+        i.transferReset();
         runWheel = false;
         power = 0.5;
     }
@@ -30,8 +33,7 @@ public class FullRobot extends OpMode  {
      * intake       - right trigger in
      *              - left trigger out
      *
-     * transfer     - right bumper in
-     *              - left bumper out
+     * transfer     -
      *
      * flywheel     - circle toggle on off
      *              - up and down arrow for flywheel power
@@ -41,9 +43,17 @@ public class FullRobot extends OpMode  {
     @Override
     public void loop()
     {
-        dt.robotOrientedDrive(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
-        b.runIntake(gamepad1.right_trigger_pressed, gamepad1.left_trigger_pressed, 0.75);
-        b.runTransfer(gamepad1.right_bumper, gamepad1.left_bumper, 0.75);
+        dt.robotOrientedDrive(gamepad1.left_stick_y, -gamepad1.left_stick_x*1.2, -gamepad1.right_stick_x);
+        i.runIntake(gamepad1.right_trigger_pressed, gamepad1.left_trigger_pressed, 0.75);
+
+        if(gamepad1.a){
+            i.runTransfer();
+            ElapsedTime time = new ElapsedTime();
+            while(time.seconds() < 1.5){
+
+            }
+            i.transferReset();
+        }
 
         if(gamepad1.circleWasPressed())
             runWheel = !runWheel;
@@ -63,3 +73,4 @@ public class FullRobot extends OpMode  {
     }
 
 }
+

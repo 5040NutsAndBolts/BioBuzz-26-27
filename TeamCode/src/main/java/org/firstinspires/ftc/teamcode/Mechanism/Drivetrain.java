@@ -36,7 +36,7 @@ public class Drivetrain {
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        odo = new Odometry(hardwareMap, 133.35f, 152.4f); // fix for new drivetrain
+        odo = new Odometry(hardwareMap, 31.5f, 152.4f); // fix for new drivetrain
         this.resetOdo();
     }
     public Drivetrain(@NonNull HardwareMap hardwareMap, float xOffset, float yOffset) {
