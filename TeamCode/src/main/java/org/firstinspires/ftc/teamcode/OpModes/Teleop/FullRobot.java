@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Mechanism.Flywheel;
 import org.firstinspires.ftc.teamcode.Mechanism.Intake;
 import org.firstinspires.ftc.teamcode.Mechanism.Drivetrain;
 import org.firstinspires.ftc.teamcode.Mechanism.Top;
@@ -14,6 +15,7 @@ public class FullRobot extends OpMode  {
     private Drivetrain dt;
     private Intake i;
     private Top t;
+    private Flywheel shooter;
     private boolean runWheel;
     private double power;
 
@@ -23,6 +25,7 @@ public class FullRobot extends OpMode  {
         dt = new Drivetrain(hardwareMap);
         i = new Intake(hardwareMap);
         t = new Top(hardwareMap);
+        shooter = new Flywheel(hardwareMap);
         i.transferReset();
         runWheel = false;
         power = 0.5;
@@ -59,9 +62,9 @@ public class FullRobot extends OpMode  {
             runWheel = !runWheel;
 
         if(runWheel)
-            t.spinFlywheel(power);
+            shooter.setFlywheelRPM(3000);
         else
-            t.spinFlywheel(0);
+            shooter.setFlywheelRPM(0);
 
         if(gamepad1.dpadUpWasPressed())
             power += 0.05;
