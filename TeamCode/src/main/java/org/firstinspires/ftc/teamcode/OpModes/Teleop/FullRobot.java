@@ -61,17 +61,22 @@ public class FullRobot extends OpMode  {
         if(gamepad1.circleWasPressed())
             runWheel = !runWheel;
 
-        if(runWheel)
-            shooter.setFlywheelRPM(3000);
-        else
+        if(runWheel) {
+            shooter.setFlywheelRPM(100);
+            shooter.flywheelMotor.setPower(1);
+        }else {
             shooter.setFlywheelRPM(0);
-
+            shooter.flywheelMotor.setPower(0);
+        }
         if(gamepad1.dpadUpWasPressed())
             power += 0.05;
         if(gamepad1.dpadDownWasPressed())
             power -= 0.05;
 
-        telemetry.addData("Flywheel RPMS", t.getRPMS());
+        telemetry.addData("Flywheel RPMS", shooter.getFlywheelRPM());
+        telemetry.addData("Flywheel Raw RPMS", shooter.getRawFlywheelRPM());
+        telemetry.addData("Flywheel Position in ticks", shooter.getFlywheelPosition());
+
         telemetry.addData("Current Odo", dt.getPosition());
     }
 
