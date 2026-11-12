@@ -10,10 +10,11 @@ public class PID {
     private double currentTarget;
     private double errorSum;
     private double lastError;
-    private double lastOutput, currentOutput;
+    public double lastOutput, currentOutput;
     private double integralLimit = 5.0;
     private int deltaTime;
     private long lastTime;
+
     private final Supplier<Double> processVariable;
 
     public PID(double kp, double ki, double kd, double integralLimit, Supplier<Double> getPV){
@@ -36,7 +37,7 @@ public class PID {
         lastTime = System.currentTimeMillis();
     }
 
-    public void setTarget(double target){
+    public void setTarget  (double target){
         currentTarget = target;
     }
 
@@ -58,7 +59,7 @@ public class PID {
 
         double proportional = kp * currentError;
         double integral = ki * errorSum;
-        double derivative = kd * (currentError - lastError);
+        double derivative = kd * (currentError - lastError) / deltaTime;
 
 
         double output = proportional + integral + derivative;
@@ -66,7 +67,7 @@ public class PID {
         lastOutput = output;
         lastError = currentError;
 
-
+        output = Math.max(-1.0, Math.min(1.0, output));
         return output;
     }
 

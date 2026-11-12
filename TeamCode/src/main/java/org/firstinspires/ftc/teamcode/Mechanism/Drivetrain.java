@@ -102,10 +102,10 @@ public class Drivetrain {
 
 
 
-        frontLeft.setPower((forward  + sideways + rotation)/1.6);
-        frontRight.setPower((forward - sideways - rotation)/1.6);
-        backLeft.setPower((forward   - sideways + rotation)/1.6);
-        backRight.setPower((forward  + sideways - rotation)/1.6);
+        frontLeft.setPower((forward  + sideways + rotation));
+        frontRight.setPower((forward - sideways - rotation));
+        backLeft.setPower((forward   - sideways + rotation));
+        backRight.setPower((forward  + sideways - rotation));
     }
 
     public void LQRDrive(double fl, double fr, double bl, double br){

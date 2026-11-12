@@ -16,7 +16,7 @@ public class Flywheel {
     Supplier<Double> flywheelSupplier = () -> (flywheelMotor.getVelocity() * 60.0) / 28.0;//*60/28 is the conversion factor for ticks/sec to rpm
     public Flywheel(HardwareMap hardwareMap) {
         flywheelMotor = hardwareMap.get(DcMotorEx.class, "Flywheel");
-        flywheelPID = new PID(.1,3e-8,0,3,flywheelSupplier);
+        flywheelPID = new PID(.0001,3e-8,0,0.01,flywheelSupplier);
 
 //        flywheelPID = new PID(0,0,0,3,flywheelSupplier);
 
@@ -32,7 +32,11 @@ public class Flywheel {
     public double getFlywheelRPM(){
         return flywheelSupplier.get();
     }
-    public double getRawFlywheelRPM(){
-        return flywheelSupplier.get() * 28 / 60;
+    public double getMotorOutput(){
+        return flywheelPID.currentOutput;
     }
+    public void resetFlywheelPID(){
+        flywheelPID.reset();
+    }
+
 }

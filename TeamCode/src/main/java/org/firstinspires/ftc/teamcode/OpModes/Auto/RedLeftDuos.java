@@ -4,17 +4,18 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Helpers.MoveToPosition;
 import org.firstinspires.ftc.teamcode.Mechanism.Drivetrain;
+import org.firstinspires.ftc.teamcode.Mechanism.Flywheel;
 
 @Autonomous(name="RedLeftDuos", group="Autonomous")
 public class RedLeftDuos extends OpMode {
     private Drivetrain dt;
-
+    private Flywheel flywheel;
 
 
     private MoveToPosition motionController;
     private MoveToPosition.Pose currentTarget;
     private double[] errThreshold = {
-            1.5, 1.5, 1.04 //cm,cm,degrees
+            1.5, 1.5, 0.05 //cm,cm,radians
     };
     private double[] maxVel = {
             0.6,0.6,0.35
@@ -24,6 +25,7 @@ public class RedLeftDuos extends OpMode {
     public void init() {
         dt = new Drivetrain(hardwareMap);
         motionController = new MoveToPosition();
+        flywheel = new Flywheel(hardwareMap);
 
         motionController.dt = dt;
 
