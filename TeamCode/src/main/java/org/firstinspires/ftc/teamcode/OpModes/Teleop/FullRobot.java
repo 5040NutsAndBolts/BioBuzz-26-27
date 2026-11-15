@@ -34,9 +34,10 @@ public class FullRobot extends OpMode  {
         i = new Intake(hardwareMap);
         t = new Top(hardwareMap);
         shooter = new Flywheel(hardwareMap);
+
         i.transferReset();
         runWheel = false;
-        flywheelTarget = 3800;
+        flywheelTarget = 3750;
     }
 
     /* Controller Setup

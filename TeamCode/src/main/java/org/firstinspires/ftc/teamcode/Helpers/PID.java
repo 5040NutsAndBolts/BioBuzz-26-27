@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 public class PID {
 
     private final double kp, ki, kd;
+    public double prop, integ, deriv;
     private double currentTarget;
     private double errorSum;
     private double lastError;
@@ -67,7 +68,6 @@ public class PID {
         lastOutput = output;
         lastError = currentError;
 
-        output = Math.max(-1.0, Math.min(1.0, output));
         return output;
     }
 
