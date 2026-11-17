@@ -64,7 +64,7 @@ public class FullRobot extends OpMode  {
             i.runTransfer();
         }
 
-        if (transferring && transferTimer.seconds() >= 1.5) {
+        if (transferring && transferTimer.seconds() >= 0.5) {
             i.transferReset();
             transferring = false;
         }

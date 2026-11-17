@@ -58,7 +58,7 @@ public class Intake{
 
     }
     public void runTransfer() {
-        transfer.setPosition(1);
+        transfer.setPosition(0.8);
 
     }
     public void runBottom(boolean check1, boolean check2, double pow)
